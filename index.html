@@ -223,6 +223,18 @@
     <p>7 photographs</p>
   </div>
 
+  <div class="album-card" onclick="openPeople()">
+    <img src="People1.JPG" alt="People album cover">
+    <h3>People</h3>
+    <p>5 photographs</p>
+  </div>
+
+  <div class="album-card" onclick="openEyes()">
+    <img src="Intheeyes1.jpg" alt="In the Eyes album cover">
+    <h3>In the Eyes</h3>
+    <p>3 photographs</p>
+  </div>
+
 </section>
 
 <!-- Portrait Album -->
@@ -291,11 +303,9 @@
     <div class="photo">
       <img src="Street5.JPG" alt="Street photograph 5">
     </div>
-
-    <div class="photo">
-      <img src="Street6.JPG" alt="Street photograph 6">
-    </div>
-
+<div class="photo">
+  <img src="Street6.JPG" alt="Street photograph 6">
+</div>
     <div class="photo">
       <img src="Street7.JPG" alt="Street photograph 7">
     </div>
@@ -303,7 +313,70 @@
   </div>
 
 </section>
-  <section class="about" id="about">
+
+<!-- People Album -->
+<section class="album-gallery" id="peopleAlbum" style="display: none;">
+
+  <a href="#photography" class="back-link" onclick="closePeople()">
+    ← Back to Albums
+  </a>
+
+  <h2>People</h2>
+  <p>My collection of photographs of people.</p>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <img src="People1.JPG" alt="People photograph 1">
+    </div>
+
+    <div class="photo">
+      <img src="People2.JPG" alt="People photograph 2">
+    </div>
+
+    <div class="photo">
+      <img src="People3.JPG" alt="People photograph 3">
+    </div>
+
+    <div class="photo">
+      <img src="People4.JPG" alt="People photograph 4">
+    </div>
+
+    <div class="photo">
+      <img src="People 5.jpg" alt="People photograph 5">
+    </div>
+
+  </div>
+
+</section>
+<!-- In the Eyes Album -->
+<section class="album-gallery" id="eyesAlbum" style="display: none;">
+
+  <a href="#photography" class="back-link" onclick="closeEyes()">
+    ← Back to Albums
+  </a>
+
+  <h2>In the Eyes</h2>
+  <p>My collection of photographs exploring eyes and expressions.</p>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <img src="Intheeyes1.jpg" alt="In the Eyes photograph 1">
+    </div>
+
+    <div class="photo">
+      <img src="Intheeyes2.jpg" alt="In the Eyes photograph 2">
+    </div>
+
+    <div class="photo">
+      <img src="Intheeyes3.JPG" alt="In the Eyes photograph 3">
+    </div>
+
+  </div>
+
+</section>
+<section class="about" id="about">
     <h2>A little about me</h2>
     <p>
       I am a freelance photographer interested
@@ -341,7 +414,29 @@
     document.getElementById("streetAlbum").style.display = "none";
     document.getElementById("photography").style.display = "block";
   }
+  // Open People album
+  function openPeople() {
+    document.getElementById("photography").style.display = "none";
+    document.getElementById("peopleAlbum").style.display = "block";
+  }
 
+  // Close People album
+  function closePeople() {
+    document.getElementById("peopleAlbum").style.display = "none";
+    document.getElementById("photography").style.display = "block";
+  }
+
+  // Open In the Eyes album
+  function openEyes() {
+    document.getElementById("photography").style.display = "none";
+    document.getElementById("eyesAlbum").style.display = "block";
+  }
+
+  // Close In the Eyes album
+  function closeEyes() {
+    document.getElementById("eyesAlbum").style.display = "none";
+    document.getElementById("photography").style.display = "block";
+  }
 </script>
 </body>
 </html>
