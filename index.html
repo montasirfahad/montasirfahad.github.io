@@ -217,6 +217,12 @@
     <p>5 photographs</p>
   </div>
 
+  <div class="album-card" onclick="openStreet()">
+    <img src="Street1.jpg" alt="Street album cover">
+    <h3>Street</h3>
+    <p>7 photographs</p>
+  </div>
+
 </section>
 
 <!-- Portrait Album -->
@@ -254,7 +260,49 @@
   </div>
 
 </section>
+<!-- Street Album -->
+<section class="album-gallery" id="streetAlbum" style="display: none;">
 
+  <a href="#photography" class="back-link" onclick="closeStreet()">
+    ← Back to Albums
+  </a>
+
+  <h2>Street</h2>
+  <p>My collection of street photographs.</p>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <img src="Street1.jpg" alt="Street photograph 1">
+    </div>
+
+    <div class="photo">
+      <img src="Street2.JPG" alt="Street photograph 2">
+    </div>
+
+    <div class="photo">
+      <img src="Street3.JPG" alt="Street photograph 3">
+    </div>
+
+    <div class="photo">
+      <img src="Street4.JPG" alt="Street photograph 4">
+    </div>
+
+    <div class="photo">
+      <img src="Street5.JPG" alt="Street photograph 5">
+    </div>
+
+    <div class="photo">
+      <img src="Street6.JPG" alt="Street photograph 6">
+    </div>
+
+    <div class="photo">
+      <img src="Street7.JPG" alt="Street photograph 7">
+    </div>
+
+  </div>
+
+</section>
   <section class="about" id="about">
     <h2>A little about me</h2>
     <p>
@@ -270,15 +318,30 @@
     <span>Photography & visual stories</span>
   </footer>
 <script>
+  // Open Portrait album
   function openAlbum() {
     document.getElementById("photography").style.display = "none";
     document.getElementById("portraitAlbum").style.display = "block";
   }
 
+  // Close Portrait album
   function closeAlbum() {
     document.getElementById("portraitAlbum").style.display = "none";
     document.getElementById("photography").style.display = "block";
   }
+
+  // Open Street album
+  function openStreet() {
+    document.getElementById("photography").style.display = "none";
+    document.getElementById("streetAlbum").style.display = "block";
+  }
+
+  // Close Street album
+  function closeStreet() {
+    document.getElementById("streetAlbum").style.display = "none";
+    document.getElementById("photography").style.display = "block";
+  }
+
 </script>
 </body>
 </html>
