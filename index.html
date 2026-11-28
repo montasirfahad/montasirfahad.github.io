@@ -59,31 +59,79 @@
       font-size: 17px;
     }
 
-    /* Photo gallery */
-    .gallery {
-      padding: 20px 8% 80px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
+   /* Albums */
+.albums {
+  padding: 20px 8% 80px;
+}
 
-    .photo img {
-      width: 100%;
-      height: 450px;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.3s;
-    }
+.album-card {
+  width: 100%;
+  max-width: 420px;
+  cursor: pointer;
+}
 
-    .photo img:hover {
-      opacity: 0.85;
-    }
+.album-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s;
+}
 
-    .photo p {
-      font-size: 14px;
-      margin-top: 12px;
-      color: #666;
-    }
+.album-card img:hover {
+  opacity: 0.85;
+}
+
+.album-card h3 {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.album-card p {
+  color: #777;
+  font-size: 14px;
+}
+
+.album-gallery {
+  padding: 20px 8% 80px;
+}
+
+.album-gallery h2 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 25px;
+  color: #555;
+  text-decoration: none;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.photo img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .photo img {
+    height: 350px;
+  }
+}
 
     /* About */
     .about {
@@ -160,32 +208,49 @@
     </p>
   </section>
 
+<!-- Photography Albums -->
+<section class="albums" id="photography">
 
-<section class="gallery" id="photography">
-
-  <div class="photo">
-    <img src="Photo1.JPG" alt="Portrait photograph 1">
-    <p>01 — Portrait</p>
+  <div class="album-card" onclick="openAlbum()">
+    <img src="Photo1.JPG" alt="Portrait album cover">
+    <h3>Portrait</h3>
+    <p>5 photographs</p>
   </div>
 
-  <div class="photo">
-    <img src="Photo2.jpeg" alt="Portrait photograph 2">
-    <p>02 — Portrait</p>
-  </div>
+</section>
 
-  <div class="photo">
-    <img src="Photo3.JPG" alt="Portrait photograph 3">
-    <p>03 — Portrait</p>
-  </div>
+<!-- Portrait Album -->
+<section class="album-gallery" id="portraitAlbum" style="display: none;">
 
-  <div class="photo">
-    <img src="Photo4.JPG" alt="Portrait photograph 4">
-    <p>04 — Portrait</p>
-  </div>
+  <a href="#photography" class="back-link" onclick="closeAlbum()">
+    ← Back to Albums
+  </a>
 
-  <div class="photo">
-    <img src="Photo5.JPG" alt="Portrait photograph 5">
-    <p>05 — Portrait</p>
+  <h2>Portrait</h2>
+  <p>My collection of portrait photographs.</p>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <img src="Photo1.JPG" alt="Portrait photograph 1">
+    </div>
+
+    <div class="photo">
+      <img src="Photo2.jpeg" alt="Portrait photograph 2">
+    </div>
+
+    <div class="photo">
+      <img src="Photo3.JPG" alt="Portrait photograph 3">
+    </div>
+
+    <div class="photo">
+      <img src="Photo4.JPG" alt="Portrait photograph 4">
+    </div>
+
+    <div class="photo">
+      <img src="Photo5.JPG" alt="Portrait photograph 5">
+    </div>
+
   </div>
 
 </section>
@@ -204,6 +269,16 @@
     <span>© 2026 Montasir Fahad</span>
     <span>Photography & visual stories</span>
   </footer>
+<script>
+  function openAlbum() {
+    document.getElementById("photography").style.display = "none";
+    document.getElementById("portraitAlbum").style.display = "block";
+  }
 
+  function closeAlbum() {
+    document.getElementById("portraitAlbum").style.display = "none";
+    document.getElementById("photography").style.display = "block";
+  }
+</script>
 </body>
 </html>
