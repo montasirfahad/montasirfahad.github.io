@@ -59,86 +59,79 @@
       font-size: 17px;
     }
 
-   /* Albums */
-.albums {
-  padding: 40px 8%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-}
-@media (max-width: 600px) {
-  .albums {
-    grid-template-columns: 1fr;
-  }
-}
-.album-card {
-  width: 100%;
-  max-width: 420px;
-  cursor: pointer;
-}
+    /* Albums */
+    .albums {
+      padding: 40px 8%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
 
-.album-card img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s;
-}
+    @media (max-width: 600px) {
+      .albums {
+        grid-template-columns: 1fr;
+      }
+    }
 
-.album-card img:hover {
-  opacity: 0.85;
-}
+    .album-card {
+      width: 100%;
+      max-width: 420px;
+      cursor: pointer;
+    }
 
-.album-card h3 {
-  margin-top: 12px;
-  font-size: 20px;
-  font-weight: 400;
-}
+    .album-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+    }
 
-.album-card p {
-  color: #777;
-  font-size: 14px;
-}
+    .album-card img:hover {
+      opacity: 0.85;
+    }
 
-.album-gallery {
-  padding: 20px 8% 80px;
-}
+    .album-card h3 {
+      margin-top: 12px;
+      font-size: 20px;
+      font-weight: 400;
+    }
 
-.album-gallery h2 {
-  font-size: 30px;
-  font-weight: 400;
-  margin-bottom: 10px;
-}
+    .album-card p {
+      color: #777;
+      font-size: 14px;
+    }
 
-.back-link {
-  display: inline-block;
-  margin-bottom: 25px;
-  color: #555;
-  text-decoration: none;
-}
+    /* Album Gallery */
+    .album-gallery {
+      padding: 20px 8% 80px;
+    }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
+    .album-gallery h2 {
+      font-size: 30px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
 
-.photo img {
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
-  display: block;
-}
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+      color: #555;
+      text-decoration: none;
+    }
 
-@media (max-width: 700px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
 
-  .photo img {
-    height: 350px;
-  }
-}
+    .photo img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      display: block;
+    }
 
     /* About */
     .about {
@@ -191,6 +184,14 @@
         height: 350px;
       }
     }
+
+    /* Loading and error messages */
+    .status-message {
+      padding: 20px 8%;
+      color: #777;
+      font-size: 14px;
+    }
+
   </style>
 </head>
 
@@ -200,250 +201,549 @@
     <div class="logo">Montasir Fahad</div>
 
     <nav>
-      <a href="#home">Home</a>
-      <a href="#photography">Photography</a>
-      <a href="#about">About</a>
+      <a href="#home" onclick="showAlbums()">Home</a>
+      <a href="#photography" onclick="showAlbums()">Photography</a>
+      <a href="#about" onclick="showAlbums()">About</a>
     </nav>
   </header>
 
+  <!-- Introduction -->
   <section class="intro" id="home">
     <h1>Moments, places & stories.</h1>
+
     <p>
-       Exploring people, places, cultures and everyday life
-       through photography. A visual journal of places and moments
-       that inspire me.
+      Exploring people, places, cultures and everyday life
+      through photography. A visual journal of places and moments
+      that inspire me.
     </p>
   </section>
 
-<!-- Photography Albums -->
-<section class="albums" id="photography">
+  <!-- Photography Albums -->
+  <section class="albums" id="photography">
+    <!-- Albums will automatically appear here -->
+  </section>
 
-  <div class="album-card" onclick="openAlbum()">
-    <img src="Photo1.JPG" alt="Portrait album cover">
-    <h3>Portrait</h3>
-    <p>5 photographs</p>
+  <div class="status-message" id="statusMessage">
+    Loading photography albums...
   </div>
 
-  <div class="album-card" onclick="openStreet()">
-    <img src="Street1.jpg" alt="Street album cover">
-    <h3>Street</h3>
-    <p>7 photographs</p>
-  </div>
+  <!-- Dynamic Album Gallery -->
+  <section class="album-gallery" id="albumGallery" style="display: none;">
 
-  <div class="album-card" onclick="openPeople()">
-    <img src="People1.JPG" alt="People album cover">
-    <h3>People</h3>
-    <p>5 photographs</p>
-  </div>
+    <a href="#photography" class="back-link" onclick="closeAlbum()">
+      ← Back to Albums
+    </a>
 
-  <div class="album-card" onclick="openEyes()">
-    <img src="Intheeyes1.jpg" alt="In the Eyes album cover">
-    <h3>In the Eyes</h3>
-    <p>3 photographs</p>
-  </div>
+    <h2 id="galleryTitle"></h2>
 
-</section>
+    <p id="galleryDescription"></p>
 
-<!-- Portrait Album -->
-<section class="album-gallery" id="portraitAlbum" style="display: none;">
-
-  <a href="#photography" class="back-link" onclick="closeAlbum()">
-    ← Back to Albums
-  </a>
-
-  <h2>Portrait</h2>
-  <p>My collection of portrait photographs.</p>
-
-  <div class="gallery">
-
-    <div class="photo">
-      <img src="Photo1.JPG" alt="Portrait photograph 1">
+    <div class="gallery" id="galleryImages">
+      <!-- Album images will automatically appear here -->
     </div>
 
-    <div class="photo">
-      <img src="Photo2.jpeg" alt="Portrait photograph 2">
-    </div>
+  </section>
 
-    <div class="photo">
-      <img src="Photo3.JPG" alt="Portrait photograph 3">
-    </div>
+  <!-- About -->
+  <section class="about" id="about">
 
-    <div class="photo">
-      <img src="Photo4.JPG" alt="Portrait photograph 4">
-    </div>
-
-    <div class="photo">
-      <img src="Photo5.JPG" alt="Portrait photograph 5">
-    </div>
-
-  </div>
-
-</section>
-<!-- Street Album -->
-<section class="album-gallery" id="streetAlbum" style="display: none;">
-
-  <a href="#photography" class="back-link" onclick="closeStreet()">
-    ← Back to Albums
-  </a>
-
-  <h2>Street</h2>
-  <p>My collection of street photographs.</p>
-
-  <div class="gallery">
-
-    <div class="photo">
-      <img src="Street1.jpg" alt="Street photograph 1">
-    </div>
-
-    <div class="photo">
-      <img src="Street2.JPG" alt="Street photograph 2">
-    </div>
-
-    <div class="photo">
-      <img src="Street3.JPG" alt="Street photograph 3">
-    </div>
-
-    <div class="photo">
-      <img src="Street4.JPG" alt="Street photograph 4">
-    </div>
-
-    <div class="photo">
-      <img src="Street5.JPG" alt="Street photograph 5">
-    </div>
-<div class="photo">
-  <img src="Street6.JPG" alt="Street photograph 6">
-</div>
-    <div class="photo">
-      <img src="Street7.JPG" alt="Street photograph 7">
-    </div>
-
-  </div>
-
-</section>
-
-<!-- People Album -->
-<section class="album-gallery" id="peopleAlbum" style="display: none;">
-
-  <a href="#photography" class="back-link" onclick="closePeople()">
-    ← Back to Albums
-  </a>
-
-  <h2>People</h2>
-  <p>My collection of photographs of people.</p>
-
-  <div class="gallery">
-
-    <div class="photo">
-      <img src="People1.JPG" alt="People photograph 1">
-    </div>
-
-    <div class="photo">
-      <img src="People2.JPG" alt="People photograph 2">
-    </div>
-
-    <div class="photo">
-      <img src="People3.JPG" alt="People photograph 3">
-    </div>
-
-    <div class="photo">
-      <img src="People4.JPG" alt="People photograph 4">
-    </div>
-
-    <div class="photo">
-      <img src="People 5.jpg" alt="People photograph 5">
-    </div>
-
-  </div>
-
-</section>
-<!-- In the Eyes Album -->
-<section class="album-gallery" id="eyesAlbum" style="display: none;">
-
-  <a href="#photography" class="back-link" onclick="closeEyes()">
-    ← Back to Albums
-  </a>
-
-  <h2>In the Eyes</h2>
-  <p>My collection of photographs exploring eyes and expressions.</p>
-
-  <div class="gallery">
-
-    <div class="photo">
-      <img src="Intheeyes1.jpg" alt="In the Eyes photograph 1">
-    </div>
-
-    <div class="photo">
-      <img src="Intheeyes2.jpg" alt="In the Eyes photograph 2">
-    </div>
-
-    <div class="photo">
-      <img src="Intheeyes3.JPG" alt="In the Eyes photograph 3">
-    </div>
-
-  </div>
-
-</section>
-<section class="about" id="about">
     <h2>A little about me</h2>
+
     <p>
       I am a freelance photographer interested
       in documenting everyday life, landscapes, people and
       cultures. Through my photographs, I try to capture the untold
       stories.
     </p>
+
   </section>
 
+  <!-- Footer -->
   <footer>
     <span>© 2026 Montasir Fahad</span>
     <span>Photography & visual stories</span>
   </footer>
-<script>
-  // Open Portrait album
-  function openAlbum() {
-    document.getElementById("photography").style.display = "none";
-    document.getElementById("portraitAlbum").style.display = "block";
-  }
 
-  // Close Portrait album
-  function closeAlbum() {
-    document.getElementById("portraitAlbum").style.display = "none";
-    document.getElementById("photography").style.display = "block";
-  }
 
-  // Open Street album
-  function openStreet() {
-    document.getElementById("photography").style.display = "none";
-    document.getElementById("streetAlbum").style.display = "block";
-  }
+  <script>
 
-  // Close Street album
-  function closeStreet() {
-    document.getElementById("streetAlbum").style.display = "none";
-    document.getElementById("photography").style.display = "block";
-  }
-  // Open People album
-  function openPeople() {
-    document.getElementById("photography").style.display = "none";
-    document.getElementById("peopleAlbum").style.display = "block";
-  }
+    // =====================================================
+    // 1. GITHUB CONFIGURATION
+    // =====================================================
 
-  // Close People album
-  function closePeople() {
-    document.getElementById("peopleAlbum").style.display = "none";
-    document.getElementById("photography").style.display = "block";
-  }
+    // Enter your GitHub username and repository name.
+    //
+    // Example:
+    // const GITHUB_REPOSITORY = "montasirfahad/photography";
+    //
+    // Replace this with your actual repository.
 
-  // Open In the Eyes album
-  function openEyes() {
-    document.getElementById("photography").style.display = "none";
-    document.getElementById("eyesAlbum").style.display = "block";
-  }
+    const GITHUB_REPOSITORY = "montasirfahad/montasirfahad.github.io";
 
-  // Close In the Eyes album
-  function closeEyes() {
-    document.getElementById("eyesAlbum").style.display = "none";
-    document.getElementById("photography").style.display = "block";
-  }
-</script>
+
+    // =====================================================
+    // 2. ALBUM FOLDER CONFIGURATION
+    // =====================================================
+
+    // Add your album folder paths here.
+    //
+    // Folder structure example:
+    //
+    // Albums/
+    //   Portrait/
+    //     Photo1.JPG
+    //     Photo2.JPG
+    //
+    //   Street/
+    //     Street1.jpg
+    //     Street2.JPG
+    //
+    //   People/
+    //     People1.JPG
+    //
+    //   In the Eyes/
+    //     Intheeyes1.jpg
+    //
+    // To add another album in the future, simply add its
+    // folder path to this array.
+    //
+    // Do not add individual image paths.
+
+    const ALBUM_FOLDERS = [
+
+      "Albums/Portrait",
+
+      "Albums/Street",
+
+      "Albums/People",
+
+      "Albums/In the Eyes"
+
+      // Add more albums below:
+      // "Albums/Landscape",
+      // "Albums/Nature",
+      // "Albums/Travel",
+
+    ];
+
+
+    // =====================================================
+    // 3. CONFIGURATION
+    // =====================================================
+
+    const SUPPORTED_IMAGE_EXTENSIONS = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".webp",
+      ".gif"
+    ];
+
+    const API_BASE_URL =
+      `https://api.github.com/repos/${GITHUB_REPOSITORY}/contents/`;
+
+    let albumsData = [];
+
+    let currentAlbum = null;
+
+
+    // =====================================================
+    // 4. HELPER FUNCTIONS
+    // =====================================================
+
+    // Extract album name from its folder path.
+
+    function getAlbumName(folderPath) {
+
+      const parts = folderPath.split("/");
+
+      return parts[parts.length - 1];
+
+    }
+
+
+    // Check whether a file is a supported image.
+
+    function isImageFile(filename) {
+
+      const extension = filename
+        .substring(filename.lastIndexOf("."))
+        .toLowerCase();
+
+      return SUPPORTED_IMAGE_EXTENSIONS.includes(extension);
+
+    }
+
+
+    // Encode folder paths for GitHub API requests.
+
+    function encodeFolderPath(path) {
+
+      return path
+        .split("/")
+        .map(part => encodeURIComponent(part))
+        .join("/");
+
+    }
+
+
+    // =====================================================
+    // 5. FETCH IMAGES FROM GITHUB
+    // =====================================================
+
+    async function fetchAlbumImages(folderPath) {
+
+      const encodedPath = encodeFolderPath(folderPath);
+
+      const response = await fetch(
+        API_BASE_URL + encodedPath
+      );
+
+      if (!response.ok) {
+
+        throw new Error(
+          `Unable to access folder: ${folderPath}. HTTP ${response.status}`
+        );
+
+      }
+
+      const files = await response.json();
+
+      if (!Array.isArray(files)) {
+        throw new Error(`Invalid folder response: ${folderPath}`);
+      }
+
+      // Select only image files.
+
+      const images = files
+        .filter(file =>
+          file.type === "file" &&
+          isImageFile(file.name) &&
+          file.download_url
+        )
+        .sort((a, b) =>
+          a.name.localeCompare(b.name, undefined, {
+            numeric: true,
+            sensitivity: "base"
+          })
+        );
+
+      return images.map(image => ({
+        name: image.name,
+        url: image.download_url
+      }));
+
+    }
+
+
+    // =====================================================
+    // 6. LOAD ALL ALBUMS
+    // =====================================================
+
+    async function loadAlbums() {
+
+      const albumsContainer =
+        document.getElementById("photography");
+
+      const statusMessage =
+        document.getElementById("statusMessage");
+
+      albumsContainer.innerHTML = "";
+
+      // Check GitHub configuration.
+
+      if (
+        GITHUB_REPOSITORY.includes("YOUR_USERNAME") ||
+        GITHUB_REPOSITORY.includes("YOUR_REPOSITORY")
+      ) {
+
+        statusMessage.textContent =
+          "Please configure your GitHub username and repository name in the JavaScript configuration section.";
+
+        return;
+
+      }
+
+      albumsData = [];
+
+      let failedAlbums = [];
+
+      for (const folderPath of ALBUM_FOLDERS) {
+
+        try {
+
+          const images = await fetchAlbumImages(folderPath);
+
+          if (images.length === 0) {
+
+            console.warn(
+              `No images found in ${folderPath}`
+            );
+
+            continue;
+
+          }
+
+          const album = {
+
+            name: getAlbumName(folderPath),
+
+            folder: folderPath,
+
+            images: images,
+
+            cover: images[0].url
+
+          };
+
+          albumsData.push(album);
+
+        } catch (error) {
+
+          console.error(error);
+
+          failedAlbums.push(folderPath);
+
+        }
+
+      }
+
+      // Display all successfully loaded albums.
+
+      renderAlbums();
+
+      if (albumsData.length === 0) {
+
+        statusMessage.textContent =
+          "No albums could be loaded. Please check your GitHub repository configuration and folder paths.";
+
+      } else if (failedAlbums.length > 0) {
+
+        statusMessage.textContent =
+          `Loaded ${albumsData.length} albums. Some folders could not be accessed: ${failedAlbums.join(", ")}`;
+
+      } else {
+
+        statusMessage.style.display = "none";
+
+      }
+
+    }
+
+
+    // =====================================================
+    // 7. DISPLAY ALBUM CARDS
+    // =====================================================
+
+    function renderAlbums() {
+
+      const albumsContainer =
+        document.getElementById("photography");
+
+      albumsContainer.innerHTML = "";
+
+      albumsData.forEach((album, index) => {
+
+        const albumCard = document.createElement("div");
+
+        albumCard.className = "album-card";
+
+        // Album cover.
+
+        const cover = document.createElement("img");
+
+        cover.src = album.cover;
+
+        cover.alt = album.name + " album cover";
+
+        cover.loading = "lazy";
+
+        // Album name.
+
+        const title = document.createElement("h3");
+
+        title.textContent = album.name;
+
+        // Image count.
+
+        const count = document.createElement("p");
+
+        count.textContent =
+          `${album.images.length} photographs`;
+
+        // Assemble album card.
+
+        albumCard.appendChild(cover);
+
+        albumCard.appendChild(title);
+
+        albumCard.appendChild(count);
+
+        // Open the selected album.
+
+        albumCard.addEventListener("click", () => {
+
+          openAlbum(index);
+
+        });
+
+        albumsContainer.appendChild(albumCard);
+
+      });
+
+    }
+
+
+    // =====================================================
+    // 8. OPEN AN ALBUM
+    // =====================================================
+
+    function openAlbum(index) {
+
+      const album = albumsData[index];
+
+      if (!album) return;
+
+      currentAlbum = album;
+
+      // Hide album cards.
+
+      document.getElementById("photography")
+        .style.display = "none";
+
+      // Hide loading status.
+
+      document.getElementById("statusMessage")
+        .style.display = "none";
+
+      // Display gallery.
+
+      const gallerySection =
+        document.getElementById("albumGallery");
+
+      gallerySection.style.display = "block";
+
+      // Set album title.
+
+      document.getElementById("galleryTitle")
+        .textContent = album.name;
+
+      // Set album description.
+
+      document.getElementById("galleryDescription")
+        .textContent =
+          `My collection of ${album.name.toLowerCase()} photographs.`;
+
+      // Clear previous images.
+
+      const galleryContainer =
+        document.getElementById("galleryImages");
+
+      galleryContainer.innerHTML = "";
+
+      // Display album images.
+
+      album.images.forEach((image, imageIndex) => {
+
+        const photo = document.createElement("div");
+
+        photo.className = "photo";
+
+        const img = document.createElement("img");
+
+        img.src = image.url;
+
+        img.alt =
+          `${album.name} photograph ${imageIndex + 1}`;
+
+        img.loading = "lazy";
+
+        photo.appendChild(img);
+
+        galleryContainer.appendChild(photo);
+
+      });
+
+      // Update URL hash.
+
+      history.replaceState(
+        null,
+        "",
+        `#${encodeURIComponent(album.name)}`
+      );
+
+      // Scroll to gallery.
+
+      gallerySection.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    // =====================================================
+    // 9. CLOSE ALBUM
+    // =====================================================
+
+    function closeAlbum() {
+
+      document.getElementById("albumGallery")
+        .style.display = "none";
+
+      document.getElementById("photography")
+        .style.display = "grid";
+
+      document.getElementById("statusMessage")
+        .style.display =
+          albumsData.length > 0 ? "none" : "block";
+
+      currentAlbum = null;
+
+      history.replaceState(
+        null,
+        "",
+        "#photography"
+      );
+
+    }
+
+
+    // =====================================================
+    // 10. NAVIGATION
+    // =====================================================
+
+    function showAlbums() {
+
+      if (currentAlbum) {
+
+        document.getElementById("albumGallery")
+          .style.display = "none";
+
+        currentAlbum = null;
+
+      }
+
+      document.getElementById("photography")
+        .style.display = "grid";
+
+      document.getElementById("statusMessage")
+        .style.display =
+          albumsData.length > 0 ? "none" : "block";
+
+    }
+
+
+    // =====================================================
+    // 11. INITIALIZE WEBSITE
+    // =====================================================
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      loadAlbums();
+
+    });
+
+  </script>
+
 </body>
 </html>
